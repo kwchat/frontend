@@ -8,8 +8,6 @@ const PERSON_IMG = "images/person.png";
 const BOT_NAME = "광운이";
 const PERSON_NAME = "나";
 
-console.log(msgerChat);
-
 appendMessage(BOT_NAME, BOT_IMG, "left", '저는 광운이, 무엇이든 물어봐주세요 😄');
 
 msgerForm.addEventListener("submit", event => {
@@ -45,18 +43,17 @@ function appendMessage(name, img, side, text) {
 }
 
 function botResponse(text) {
-    const delay = 1000;
     let msgText = '생각이 필요해요🤔';
 
-    const putThinking = setTimeout(() => {
-        appendMessage(BOT_NAME, BOT_IMG, "left", msgText);
-    }, delay);
+    appendMessage(BOT_NAME, BOT_IMG, "left", msgText);
     postData('http://127.0.0.1:5000/', {msg: text})
-        .then(function (res) { return res.json() })
         .then(function (data) {
-            clearTimeout(putThinking);
             msgText = data.msg;
+            
             msgerChat.lastElementChild.innerHTML = msgHTML(BOT_NAME, BOT_IMG, "left", msgText);
+        })
+        .catch(function (err) {
+            console.log(err);
         });
 }
 
@@ -75,17 +72,13 @@ function formatDate(date) {
 function postData(url = '', data = {}) {
     // Default options are marked with *
       return fetch(url, {
-          method: 'POST', // *GET, POST, PUT, DELETE, etc.
-          mode: 'cors', // no-cors, cors, *same-origin
-          cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-          credentials: 'same-origin', // include, *same-origin, omit
+          method: 'POST', 
+          mode: 'cors',
+          cache: 'no-cache',
           headers: {
               'Content-Type': 'application/json',
-              // 'Content-Type': 'application/x-www-form-urlencoded',
           },
-          redirect: 'follow', // manual, *follow, error
-          referrer: 'no-referrer', // no-referrer, *client
-          body: JSON.stringify(data), // body data type must match "Content-Type" header
+          body: JSON.stringify(data), 
       })
-      .then(response => response.json()); // parses JSON response into native JavaScript objects
+      .then(response => response.json()); 
   }
