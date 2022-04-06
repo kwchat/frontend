@@ -3,12 +3,14 @@ const msgerInput = get(".msger-input");
 const msgerChat = get(".msger-chat");
 
 // Icons made by Freepik from www.flaticon.com
+const serverUrl = 'http://127.0.0.1:5000/'
 const BOT_IMG = "images/bot.png";
 const PERSON_IMG = "images/person.png";
 const BOT_NAME = "광운이";
 const PERSON_NAME = "나";
+const welcomMsg = '저는 광운이, 무엇이든 물어봐주세요 😄';
 
-appendMessage(BOT_NAME, BOT_IMG, "left", '저는 광운이, 무엇이든 물어봐주세요 😄');
+appendMessage(BOT_NAME, BOT_IMG, "left", welcomMsg);
 
 msgerForm.addEventListener("submit", event => {
     event.preventDefault();
@@ -46,7 +48,7 @@ function botResponse(text) {
     let msgText = '생각이 필요해요🤔';
 
     appendMessage(BOT_NAME, BOT_IMG, "left", msgText);
-    postData('http://127.0.0.1:5000/', { msg: text })
+    postData(serverUrl, { msg: text })
         .then(function (data) {
             msgText = data.msg;
             msgerChat.lastElementChild.querySelector('.msg-text').textContent = msgText;
