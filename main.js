@@ -2,7 +2,6 @@ const msgerForm = get(".msger-inputarea");
 const msgerInput = get(".msger-input");
 const msgerChat = get(".msger-chat");
 
-// Icons made by Freepik from www.flaticon.com
 const serverUrl = 'http://127.0.0.1:5000/'
 const BOT_IMG = "images/bot.png";
 const PERSON_IMG = "images/person.png";
