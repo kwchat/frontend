@@ -8,9 +8,9 @@ const BOT_IMG = "images/bot.png";
 const PERSON_IMG = "images/person.png";
 const BOT_NAME = "광운이";
 const PERSON_NAME = "나";
-const welcomMsg = '저는 광운이, 무엇이든 물어봐주세요 😄';
+const welcomeMsg = '저는 광운이, 무엇이든 물어봐주세요 😄';
 
-appendMessage(BOT_NAME, BOT_IMG, "left", welcomMsg);
+appendMessage(BOT_NAME, BOT_IMG, "left", welcomeMsg);
 
 msgerForm.addEventListener("submit", event => {
     event.preventDefault();
